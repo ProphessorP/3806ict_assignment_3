@@ -219,3 +219,7 @@ add_dependencies(update_grid ${catkin_EXPORTED_TARGETS})
 add_executable(search_rescue src/search_rescue.cpp)
 target_link_libraries(search_rescue ${catkin_LIBRARIES})
 add_dependencies(search_rescue ${catkin_EXPORTED_TARGETS})
+
+
+catkin_install_python(PROGRAMS src/planner_node.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

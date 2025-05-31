@@ -3,7 +3,7 @@ Assertion: VisitedMove() reaches home
 ********Verification Result********
 The Assertion (VisitedMove() reaches home) is VALID.
 The following trace leads to a state where the condition is satisfied.
-<init -> moveRight -> moveDown -> moveDown -> moveRight -> moveDown -> moveDown -> moveLeft -> moveLeft -> moveUp -> moveLeft -> moveUp -> moveUp -> moveLeft -> moveUp>
+<init -> moveLeft -> moveLeft -> moveUp -> moveUp -> moveUp -> moveUp -> moveUp -> moveLeft -> moveUp -> moveLeft>
 
 ********Verification Setting********
 Admissible Behavior: All
@@ -12,9 +12,9 @@ System Abstraction: False
 
 
 ********Verification Statistics********
-Visited States:363
-Total Transitions:1006
-Time Used:0.1569949s
-Estimated Memory Used:9101.672KB
+Visited States:20201
+Total Transitions:39345
+Time Used:1.378068s
+Estimated Memory Used:50083.392KB
 
 
