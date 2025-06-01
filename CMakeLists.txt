@@ -124,7 +124,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
 # include
-  ${catkin_INCLUDE_DIRS}
+  ${catkin_INCLUDE_DIRS} /usr/include
 )
 
 ## Declare a C++ library
@@ -222,4 +222,7 @@ add_dependencies(search_rescue ${catkin_EXPORTED_TARGETS})
 
 
 catkin_install_python(PROGRAMS src/planner_node.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+catkin_install_python(PROGRAMS src/rl_executor.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

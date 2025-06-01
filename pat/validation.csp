@@ -1,29 +1,5 @@
-#define SURVIVOR_COUNT 5;
-#define SUB_CAP 2;
-#define AllSurvivorsSaved (saved == SURVIVOR_COUNT);
+#include "world.csp"
 
-var saved:{0..SURVIVOR_COUNT} = 4;
-var onboard:{0..SUB_CAP} = 0;
-var known_survivors:{0..SURVIVOR_COUNT} = 0;
-var unknown_survivors:{0..SURVIVOR_COUNT} = 1;
+Sequence() = moveDown -> Skip;
 
-Explore() = [unknown_survivors > 0] (
-    find {known_survivors = known_survivors + 1; unknown_survivors = unknown_survivors - 1;} -> Robot()
-    [] nofind -> Robot()
-) [] [unknown_survivors == 0] skip -> Robot();
-
-Rescue() = [known_survivors > 0 && onboard < SUB_CAP] pickup {known_survivors = known_survivors - 1; onboard = onboard + 1;} -> Robot();
-
-ReturnHome() = [onboard > 0] dropoff {saved = saved + onboard; onboard = 0;} -> Robot();
-
-Robot() = (
-    [saved < SURVIVOR_COUNT] (
-        [onboard > 0] ReturnHome()
-        [] [known_survivors > 0 && onboard < SUB_CAP] Rescue()
-        [] [unknown_survivors > 0] Explore()
-    )
-) [] [saved == SURVIVOR_COUNT] skip;
-
-System() = Robot();
-
-#assert System() reaches AllSurvivorsSaved;
+#assert Sequence() reaches goalAreaChecked;

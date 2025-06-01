@@ -30,7 +30,7 @@ def query_ollama(client, grid, x, y, saved, onboard):
     task = response["response"].strip().lower()
     if task not in ["0", "1", "2"]:
         rospy.logwarn(f"Invalid LLM response: {task}")
-        task = "0" if onboard > 0 else "2"  # State-based fallback
+        task = "0" if onboard > 0 else "2"
     return task
 
 def write_task(task):
@@ -43,10 +43,10 @@ def write_task(task):
 
 def planner_node():
     client = Client(host="http://localhost:11434")
-    client.generate(model="llama2", prompt="Hello")  # Warm up
+    client.generate(model="llama2", prompt="Hello")
     rospy.init_node("planner_node")
     rospy.loginfo("Started planner node")
-    rate = rospy.Rate(3)  # Same as Gazebo simulation rate to ensure sync
+    rate = rospy.Rate(3)
     while not rospy.is_shutdown():
         rospy.loginfo("Querying LLM for strategy")
         grid, x, y, saved, onboard = read_state()
